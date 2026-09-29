@@ -1,0 +1,7 @@
+.DS_Store
+
+# Personal data: CVs and generated reports stay local
+cv/*
+!cv/README.md
+output/*
+!output/.gitkeep

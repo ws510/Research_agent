@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Weekly funding search (Mondays 09:00). From the project root, install with:
+    sed -e "s#__PROJECT_DIR__#$PWD#g" -e "s#__CLAUDE_BIN__#$(command -v claude)#g" \
+      scheduling/funding-search.plist.template > ~/Library/LaunchAgents/local.funding-search.plist
+    launchctl load ~/Library/LaunchAgents/local.funding-search.plist
+  Run once now to test:
+    launchctl start local.funding-search
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>local.funding-search</string>
+
+    <key>WorkingDirectory</key>
+    <string>__PROJECT_DIR__</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>__CLAUDE_BIN__</string>
+        <string>-p</string>
+        <string>/funding-search</string>
+    </array>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+        <key>Weekday</key>
+        <integer>1</integer>
+        <key>Hour</key>
+        <integer>9</integer>
+        <key>Minute</key>
+        <integer>0</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>__PROJECT_DIR__/output/schedule.log</string>
+    <key>StandardErrorPath</key>
+    <string>__PROJECT_DIR__/output/schedule.log</string>
+</dict>
+</plist>
